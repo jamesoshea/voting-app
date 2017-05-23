@@ -12,6 +12,9 @@ var PollSchema = mongoose.Schema({
 	},
 	options: {
 		type: Array
+	},
+	voters: {
+		type: Array
 	}
 
 });

@@ -61,18 +61,39 @@ router.post('/:id/add', function(req, res){
 
 //vote up
 router.get('/:id/:option/voteup', function(req, res){
+  console.log(req.ip);
   query = { _id: req.params.id }
   var i = req.params.option;
   Poll.findOne(query, function(err, poll){
-    poll.options[i].votes++;
-    poll.options.sort(function(a,b){
-      return b.votes - a.votes;
-    });
-    Poll.findOneAndUpdate(query, { $set: { options: poll.options}, new: true}, function(err, poll){
+    if(req.user) {
+      var u = req.user.id;
+    } else {
+      var u ='balls';
+    }
+    if (poll.voters.indexOf(u) >= 0 || poll.voters.indexOf(req.ip) >= 0) {
+      req.flash('error_msg', 'You have already voted on this poll');
       res.redirect('/polls/' + req.params.id);
-    });
+      res.end();
+    } else {
+      poll.options[i].votes++;
+
+      //add user to list of previous voters
+      if (req.user) {
+        poll.voters.push(req.user.id);
+      } else {
+        poll.voters.push(req.ip);
+      }
+      poll.options.sort(function(a,b){
+        return b.votes - a.votes;
+      });
+
+      Poll.findOneAndUpdate(query, { $set: { options: poll.options, voters: poll.voters}, new: true}, function(err, poll){
+        res.redirect('/polls/' + req.params.id);
+      });
+    }
   });
 });
+
 
 //delete poll
 router.get('/:id/delete', function(req, res){
@@ -88,6 +109,7 @@ router.post('/newpoll', ensureAuthenticated, function(req, res) {
   var question = req.body.question;
   var owner = req.user.id;
   var responses = req.body.responses.split(',');
+  var voters = [];
   responses.forEach(function(response, index){
     responses[index] = { text: responses[index], votes: 0 };
   });
@@ -104,7 +126,8 @@ router.post('/newpoll', ensureAuthenticated, function(req, res) {
     var newPoll = new Poll({
       question: question,
       owner: owner,
-      options: responses
+      options: responses,
+      voters: voters
     });
 
     newPoll.save(function(err) {

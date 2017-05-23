@@ -4,6 +4,10 @@ body {
   padding-bottom: 20px;
 }
 
+h2 {
+  border-bottom: 0px;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .footer {
@@ -44,6 +48,7 @@ body {
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */
   .header,
+  .main,
   .footer {
     padding-right: 0;
     padding-left: 0;
@@ -56,6 +61,7 @@ body {
 
 .page-header {
   margin-top: 0;
+  border-bottom: 0;
 }
 
 .poll-container {

@@ -1,9 +1,8 @@
-<h2 class="page-header">Dashboard</h2>
-<p class="yours">Your polls:</p>
+<h2 class="page-header">Your polls:</h2>
 <div class="main">
   {{#polls}}
     <div class="poll-container">
-      <h4 class='poll-header'><a href="/polls/{{_id}}">{{ question }}</a></h4>
+      <h3 class='poll-header'><a href="/polls/{{_id}}">{{ question }}</a></h3>
     </div>
   {{/polls}}
 </div>
