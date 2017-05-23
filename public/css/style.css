@@ -1,0 +1,9 @@
+.header {
+  padding-left: 15%;
+  background-color: #000;
+  color: #FFF;
+}
+
+.clean-list {
+  list-style: none;
+}

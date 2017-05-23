@@ -1,0 +1,24 @@
+{
+  "name": "antibiotics",
+  "version": "1.0.0",
+  "description": "Antibiotics Discovery Visualisation",
+  "main": "server.js",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "body-parser": "^1.17.1",
+    "browserify": "^14.1.0",
+    "express": "^4.15.2",
+    "mongoose": "^4.8.6",
+    "vue": "^2.2.2"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "6.9.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "web: node server.js"
+  },
+  "author": "James O'Shea",
+  "license": "ISC"
+}
