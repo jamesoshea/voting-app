@@ -31,6 +31,15 @@ router.get('/:id', function(req, res){
     poll.options.sort(function(a,b){
       return b.votes - a.votes;
     });
+    var votes = poll.options.map(function(el){return el['votes']});
+    var max = Math.max.apply(null, votes);
+    votes.forEach(function(elem, i){
+      if (votes[i] > 0) {
+        poll.options[i].ratio = votes[i]/max * 100;
+      } else {
+        poll.options[i].ratio = 10;
+      }
+    });
     res.render('poll', {poll: poll, isOwner: isOwner, loggedIn: loggedIn});
   });
 });
@@ -40,6 +49,9 @@ router.post('/:id/add', function(req, res){
   query = { _id: req.params.id }
   Poll.findOne(query, function(err, poll){
     poll.options.push({text: req.body.newOption, votes: 1});
+    poll.options.sort(function(a,b){
+      return b.votes - a.votes;
+    });
     Poll.findOneAndUpdate(query, { $set: {options: poll.options}}, function(err, poll){
       if (err) throw err;
       res.redirect('/polls/' + req.params.id);

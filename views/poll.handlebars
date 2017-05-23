@@ -2,7 +2,7 @@
     <div class="poll-container">
       <h2 class='poll-header'>{{ poll.question }}</h2>
       {{#poll.options}}
-        <div class="bar" style="width: {{ votes }}px">
+        <div class="bar" style="width: {{ ratio }}%">
           {{ votes }}
         </div>
         <p class='options' value="[{{ text }}, {{ votes }}]">{{ text }}: {{ votes }} <a href="./{{../poll._id}}/{{@index}}/voteup">vote for this</a></p>
