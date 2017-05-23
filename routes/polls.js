@@ -21,13 +21,26 @@ router.get('/:id', function(req, res){
   query = { _id: req.params.id }
   Poll.findOne(query, function(err, poll){
     var isOwner = false;
+    var loggedIn = false;
     if(req.user) {
-      console.log(req.user.id, poll.owner)
+      loggedIn = true;
       if (req.user.id == poll.owner) {
         isOwner = true;
       }
     }
-    res.render('poll', {poll: poll, isOwner: isOwner});
+    res.render('poll', {poll: poll, isOwner: isOwner, loggedIn: loggedIn});
+  });
+});
+
+//add an option to a poll
+router.post('/:id/add', function(req, res){
+  query = { _id: req.params.id }
+  Poll.findOne(query, function(err, poll){
+    poll.options.push({text: req.body.newOption, votes: 1});
+    Poll.findOneAndUpdate(query, { $set: {options: poll.options}}, function(err, poll){
+      if (err) throw err;
+      res.redirect('/polls/' + req.params.id);
+    });
   });
 });
 
@@ -38,13 +51,6 @@ router.get('/:id/:option/voteup', function(req, res){
   Poll.findOne(query, function(err, poll){
     poll.options[i].votes++;
     Poll.findOneAndUpdate(query, { $set: { options: poll.options}, new: true}, function(err, poll){
-      var isOwner = false;
-      if(req.user) {
-        console.log(req.user.id, poll.owner)
-        if (req.user.id == poll.owner) {
-          isOwner = true;
-        }
-      }
       res.redirect('/polls/' + req.params.id);
     });
   });

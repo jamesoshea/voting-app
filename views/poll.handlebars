@@ -1,13 +1,19 @@
-<h2 class="page-header">All Polls</h2>
 <div class="main">
     <div class="poll-container">
-      <h4 class='poll-header'>{{ poll.question }}</h4>
+      <h2 class='poll-header'>{{ poll.question }}</h2>
       {{#poll.options}}
         <p>{{ text }}: {{ votes }} <a href="./{{../poll._id}}/{{@index}}/voteup">vote for this</a></p>
       {{/poll.options}}
-      <form method="post" action="{{poll._id}}/add">
-
-      </form>
+      {{#if loggedIn}}
+        <form method="post" action="{{poll._id}}/add">
+          <div class="form-group">
+           <label>Add an option</label>
+           <input type="text" class="form-control" name="newOption">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=I just voted on a poll: {{poll.question}}">Tweet</a><br />
+      {{/if}}
       {{#if isOwner}}
         <a href="{{poll._id}}/delete">Delete this poll</a>
       {{/if}}
