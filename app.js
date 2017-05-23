@@ -14,12 +14,16 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://james:DBtelecaster1@ds149491.mlab.com:49491/jim-vote');
 var db = mongoose.connection;
 
+//init app
+var app = express();
+
+// Set Static Folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 //routes
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
-//init app
-var app = express();
+var polls = require('./routes/polls');
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -30,9 +34,6 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-// Set Static Folder
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Express Session
 app.use(session({
@@ -74,8 +75,10 @@ app.use(function (req, res, next) {
   next();
 });
 
+//use route files
 app.use('/', routes);
 app.use('/users', users);
+app.use('/polls', polls);
 
 // Set Port
 app.set('port', (process.env.PORT || 3000));
