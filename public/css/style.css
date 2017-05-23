@@ -91,6 +91,15 @@ body {
   text-align: center;
 }
 
+.bar {
+  background-color: steelblue;
+  color: white;
+  height: 20px;
+  margin-bottom: 5px;
+  padding-right: 5px;
+  text-align: right
+}
+
 footer {
     margin-top: 2.5rem;
 }

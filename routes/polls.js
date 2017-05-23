@@ -28,6 +28,9 @@ router.get('/:id', function(req, res){
         isOwner = true;
       }
     }
+    poll.options.sort(function(a,b){
+      return b.votes - a.votes;
+    });
     res.render('poll', {poll: poll, isOwner: isOwner, loggedIn: loggedIn});
   });
 });
@@ -50,6 +53,9 @@ router.get('/:id/:option/voteup', function(req, res){
   var i = req.params.option;
   Poll.findOne(query, function(err, poll){
     poll.options[i].votes++;
+    poll.options.sort(function(a,b){
+      return b.votes - a.votes;
+    });
     Poll.findOneAndUpdate(query, { $set: { options: poll.options}, new: true}, function(err, poll){
       res.redirect('/polls/' + req.params.id);
     });
