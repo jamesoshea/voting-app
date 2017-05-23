@@ -1,26 +1,36 @@
 {
-  "name": "antibiotics",
+  "name": "voting-app",
   "version": "1.0.0",
-  "description": "Antibiotics Discovery Visualisation",
-  "main": "server.js",
-  "dependencies": {
-    "axios": "^0.15.3",
-    "body-parser": "^1.17.1",
-    "browserify": "^14.1.0",
-    "express": "^4.15.2",
-    "express-handlebars": "^3.0.0",
-    "mongoose": "^4.8.6",
-    "passport": "^0.3.2",
-    "vue": "^2.2.2"
-  },
-  "devDependencies": {},
-  "engines": {
-    "node": "6.9.2"
-  },
+  "description": "fcc challenge",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "web: node server.js"
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesoshea/voting-app.git"
   },
   "author": "James O'Shea",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamesoshea/voting-app/issues"
+  },
+  "homepage": "https://github.com/jamesoshea/voting-app#readme",
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "connect-flash": "*",
+    "cookie-parser": "^1.4.1",
+    "express": "*",
+    "express-handlebars": "*",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*"
+  }
 }
