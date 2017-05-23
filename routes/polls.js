@@ -8,6 +8,13 @@ router.get('/newpoll', ensureAuthenticated,  function(req, res) {
   res.render('newpoll');
 });
 
+//show all polls
+router.get('/all',  function(req, res) {
+  Poll.find(function(err, polls){
+    res.render('all', {polls: polls});
+  });
+});
+
 //create poll
 router.post('/newpoll', ensureAuthenticated, function(req, res) {
   var question = req.body.question;

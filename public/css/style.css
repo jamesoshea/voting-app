@@ -82,6 +82,15 @@ body {
   margin-top: 0;
 }
 
+.poll-container {
+  width: 80%;
+  margin: auto;
+}
+
+.poll-header {
+  text-align: center;
+}
+
 footer {
     margin-top: 2.5rem;
 }
