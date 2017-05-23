@@ -76,6 +76,11 @@ body {
   text-align: right
 }
 
+.yours {
+  text-align: center;
+}
+
 footer {
-    margin-top: 2.5rem;
+  text-align: center;
+  margin-top: 2.5rem;
 }
