@@ -1,0 +1,15 @@
+<h2 class="page-header">All Polls</h2>
+<div class="main">
+    <div class="poll-container">
+      <h4 class='poll-header'>{{ poll.question }}</h4>
+      {{#poll.options}}
+        <p>{{ text }}: {{ votes }} <a href="./{{../poll._id}}/{{@index}}/voteup">vote for this</a></p>
+      {{/poll.options}}
+      <form method="post" action="{{poll._id}}/add">
+
+      </form>
+      {{#if isOwner}}
+        <a href="{{poll._id}}/delete">Delete this poll</a>
+      {{/if}}
+    </div>
+</div>

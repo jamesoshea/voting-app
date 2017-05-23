@@ -2,7 +2,7 @@
 <div class="main">
   {{#polls}}
     <div class="poll-container">
-      <h4 class='poll-header'>{{ question }}</h4>
+      <h4 class='poll-header'><a href="/polls/{{_id}}">{{ question }}</a></h4>
       {{#options}}
       <p>{{ text }}: {{ votes }}</p>
       {{/options}}
