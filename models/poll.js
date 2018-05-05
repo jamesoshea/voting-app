@@ -5,18 +5,17 @@ const bcrypt = require('bcryptjs');
 var PollSchema = mongoose.Schema({
 	question: {
 		type: String,
-		index:true
+		index: true,
 	},
 	owner: {
-		type: String
+		type: String,
 	},
 	options: {
-		type: Array
+		type: Array,
 	},
 	voters: {
-		type: Array
-	}
-
+		type: Array,
+	},
 });
 
-var Poll = module.exports = mongoose.model('Poll', PollSchema);
+var Poll = (module.exports = mongoose.model('Poll', PollSchema));

@@ -1,36 +1,45 @@
 {
-  "name": "voting-app",
-  "version": "1.0.0",
-  "description": "fcc challenge",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jamesoshea/voting-app.git"
-  },
-  "author": "James O'Shea",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jamesoshea/voting-app/issues"
-  },
-  "homepage": "https://github.com/jamesoshea/voting-app#readme",
-  "dependencies": {
-    "bcryptjs": "*",
-    "body-parser": "*",
-    "connect-flash": "*",
-    "cookie-parser": "^1.4.1",
-    "express": "*",
-    "express-handlebars": "*",
-    "express-messages": "*",
-    "express-session": "*",
-    "express-validator": "*",
-    "mongodb": "*",
-    "mongoose": "*",
-    "passport": "*",
-    "passport-http": "*",
-    "passport-local": "*"
-  }
+	"author": "James O'Shea",
+	"bugs": {
+		"url": "https://github.com/jamesoshea/voting-app/issues"
+	},
+	"dependencies": {
+		"bcryptjs": "*",
+		"body-parser": "*",
+		"connect-flash": "*",
+		"cookie-parser": "^1.4.1",
+		"express": "*",
+		"express-handlebars": "*",
+		"express-messages": "*",
+		"express-session": "*",
+		"express-validator": "*",
+		"mongodb": "*",
+		"mongoose": "*",
+		"passport": "*",
+		"passport-http": "*",
+		"passport-local": "*"
+	},
+	"description": "fcc challenge",
+	"devDependencies": {
+		"husky": "^0.14.3",
+		"lint-staged": "^7.0.5",
+		"prettier": "^1.12.1"
+	},
+	"homepage": "https://github.com/jamesoshea/voting-app#readme",
+	"license": "MIT",
+	"lint-staged": {
+		"*.{js,json,css,md,vue,scss}": ["prettier --write", "git add"]
+	},
+	"main": "app.js",
+	"name": "voting-app",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jamesoshea/voting-app.git"
+	},
+	"scripts": {
+		"precommit": "lint-staged",
+		"start": "node server.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"version": "1.0.0"
 }
