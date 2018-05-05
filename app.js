@@ -10,10 +10,10 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
+const config = require('./config');
 
-mongoose.connect(
-	'mongodb://james:lolpassword1234@ds149491.mlab.com:49491/jim-vote',
-);
+mongoose.connect(config.mongoDbConnectionString);
+
 var db = mongoose.connection;
 
 //init app
@@ -40,7 +40,7 @@ app.use(cookieParser());
 // Express Session
 app.use(
 	session({
-		secret: 'gdaymate',
+		secret: config.secret,
 		saveUninitialized: true,
 		resave: true,
 	}),
